@@ -1,0 +1,75 @@
+﻿@model ManualWeb.Models.ManualDTO
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ManualDTO</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Fai Foto
+        </dt>
+        <dd>
+            <a href="#" id="faiFoto" class="btn btn-primary">Scatta</a>
+        </dd>
+    </dl>
+    <dl class="dl-horizontal">
+        <dt>
+            Aggiungi dose
+        </dt>
+        <dd>
+            <a href="#" id="addDose" class="btn btn-primary">Add</a>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+    $(function () {
+
+        $("#faiFoto").click(function (e) {
+
+
+            var url = '@Url.Action("doFoto", new { id = Model.DeviceId })';
+            var id = '@Model.DeviceId';
+            $.ajax({
+                url: url,
+                type: 'post',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: JSON.stringify({
+                    id: id
+                })
+
+            });
+
+        });
+        $("#addDose").click(function (e) {
+
+
+            var url = '@Url.Action("addDose", new { id = Model.DeviceId })';
+            var id = '@Model.DeviceId';
+            $.ajax({
+                url: url,
+                type: 'post',
+                contentType: "application/json; charset=utf-8",
+                dataType: 'json',
+                data: JSON.stringify({
+                    id: id
+                })
+
+            });
+
+        });
+    });
+
+    </script>
+}
